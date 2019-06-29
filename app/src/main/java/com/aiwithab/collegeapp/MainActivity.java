@@ -1,5 +1,6 @@
 package com.aiwithab.collegeapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,32 +31,16 @@ public class MainActivity extends AppCompatActivity {
                 if(etUserName.getText().toString().isEmpty()||etUserPass.getText().toString().isEmpty()){
                     Toast.makeText(MainActivity.this,"Please Enter Username and Password!",Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    if(etUserPass.getText().toString().equals("admin")&&etUserName.getText().toString().equals("admin")){
 
-                    }
+                if(etUserPass.getText().toString().equals("admin")&&etUserName.getText().toString().equals("admin")){
+                        startActivity(new Intent(MainActivity.this,HomeScreenActivity.class));
 
                 }
 
-            }
-        });
-        btnGuest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
 
             }
         });
-        tvCreateAcc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
-        tvForgetPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 }
