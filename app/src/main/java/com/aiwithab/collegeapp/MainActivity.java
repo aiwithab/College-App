@@ -3,6 +3,7 @@ package com.aiwithab.collegeapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,19 +29,27 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(etUserName.getText().toString().isEmpty()||etUserPass.getText().toString().isEmpty()){
-                    Toast.makeText(MainActivity.this,"Please Enter Username and Password!",Toast.LENGTH_SHORT).show();
-                }
 
-                if(etUserPass.getText().toString().equals("admin")&&etUserName.getText().toString().equals("admin")){
+
+                if(etUserPass.getText().toString().equals("admin") && etUserName.getText().toString().equals("123")){
                         startActivity(new Intent(MainActivity.this,HomeScreenActivity.class));
 
                 }
-
+                if (!(etUserPass.getText().toString().equals("admin") && etUserName.getText().toString().equals("123"))){
+                    Toast.makeText(MainActivity.this,"Invalid Credentials!",Toast.LENGTH_SHORT).show();
+                }
 
 
             }
         });
 
+        tvCreateAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
+
 }

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CollegeApp</string>
     <string name="clg_name">Government College of Engineering and Research, Avasari</string>
-    <string name="user_name">Username</string>
+    <string name="roll_no">Roll Number</string>
     <string name="user_pass">Password</string>
     <string name="forget_pass">Forget Password?</string>
     <string name="create_acc">Create Account</string>
@@ -28,4 +28,9 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dashtab">Dashboard</string>
+    <string name="notificationtab">Notifications</string>
 </resources>
