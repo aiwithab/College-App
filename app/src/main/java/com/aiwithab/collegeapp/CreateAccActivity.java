@@ -53,7 +53,7 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
         branches.add("EnTC");
         branches.add("Instrumentation");
 
-        ArrayAdapter<String> branchAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,branches);
+        ArrayAdapter<String> branchAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,branches);
         branchAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sBranches.setAdapter(branchAdapter);
 
@@ -63,14 +63,18 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
         year.add("T.E");
         year.add("B.E");
 
-        ArrayAdapter<String> yearAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,year);
+        ArrayAdapter<String> yearAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,year);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sYear.setAdapter(yearAdapter);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //here we'll send the data to server
+
+
+                    //here we'll send the data to server
+
+
             }
         });
     }
