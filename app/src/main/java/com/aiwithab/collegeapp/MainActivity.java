@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         tvCreateAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CreateAccActivity.class));
 
             }
         });
