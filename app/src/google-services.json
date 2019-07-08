@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "137735473794",
+    "firebase_url": "https://gcoeara-college.firebaseio.com",
+    "project_id": "gcoeara-college",
+    "storage_bucket": "gcoeara-college.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137735473794:android:c79ff8019af2f67d",
+        "android_client_info": {
+          "package_name": "com.aiwithab.collegeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137735473794-dptnbcu5p8vm74uforhpvkrs7pfv04f3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aiwithab.collegeapp",
+            "certificate_hash": "6ca878a0365d711b4caef3b8f3bf614ae5b24746"
+          }
+        },
+        {
+          "client_id": "137735473794-8ta0uemkvav32922ciggneatpnsn4fr7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP9oTwr_F7Qu5JnWfwrXKYO2UOI5TNzwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137735473794-8ta0uemkvav32922ciggneatpnsn4fr7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

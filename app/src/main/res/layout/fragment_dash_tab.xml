@@ -7,26 +7,6 @@
     android:orientation="vertical"
     tools:context=".DashTabFrag">
 
-    <org.lucasr.twowayview.TwoWayView
-        android:id="@+id/horizontalImages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawSelectorOnTop="false"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/person" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/splash_screen_icon" />
-    </org.lucasr.twowayview.TwoWayView>
-
     <Button
         android:id="@+id/btnAcademicCal"
         android:layout_width="match_parent"
