@@ -44,7 +44,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:inputType="number" />
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/tvUserPass"

@@ -11,9 +11,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+
+
     EditText etUserName,etUserPass;
     Button btnLogin,btnGuest;
     TextView tvForgetPass,tvCreateAcc;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,20 +30,17 @@ public class MainActivity extends AppCompatActivity {
         btnLogin=findViewById(R.id.btnLogin);
         btnGuest=findViewById(R.id.btnGuest);
 
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                if(etUserPass.getText().toString().equals("admin") && etUserName.getText().toString().equals("123")){
-                        startActivity(new Intent(MainActivity.this,HomeScreenActivity.class));
-
+                if(etUserName.getText().toString().trim().equals("admin")&&etUserPass.getText().toString().trim().equals("admin")){
+                    startActivity(new Intent(MainActivity.this,HomeScreenActivity.class));
                 }
-                if (!(etUserPass.getText().toString().equals("admin") && etUserName.getText().toString().equals("123"))){
+                if(!(etUserName.getText().toString().trim().equals("admin")&&etUserPass.getText().toString().trim().equals("admin"))) {
                     Toast.makeText(MainActivity.this,"Invalid Credentials!",Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
 
@@ -52,5 +53,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
+
 
 }
