@@ -8,31 +8,26 @@
     android:orientation="vertical"
     tools:context=".CreateAccActivity">
 
-    <LinearLayout
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName" />
+
+
+    <EditText
+        android:id="@+id/etEMail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/etFirstName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="First Name"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/etLastName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="Last Name"
-            android:inputType="textPersonName" />
-    </LinearLayout>
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/etRollNo"

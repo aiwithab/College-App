@@ -25,26 +25,26 @@
         app:fontFamily="@font/secular_one" />
 
     <TextView
-        android:id="@+id/tvUserName"
+        android:id="@+id/tvUserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="100dp"
         android:layout_marginRight="10dp"
-        android:text="@string/roll_no"
+        android:text="@string/user_email"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
         app:fontFamily="@font/adamina" />
 
     <EditText
-        android:id="@+id/etUserName"
+        android:id="@+id/etUserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:inputType="text" />
+        android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/tvUserPass"

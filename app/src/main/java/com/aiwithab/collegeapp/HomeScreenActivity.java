@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class HomeScreenActivity extends AppCompatActivity
@@ -24,6 +25,7 @@ public class HomeScreenActivity extends AppCompatActivity
     TabLayout tabLayout;
     ViewPager viewPager;
 
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class HomeScreenActivity extends AppCompatActivity
 
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle("Home");
+        firebaseAuth=FirebaseAuth.getInstance();
 
     }
 
@@ -69,6 +72,7 @@ public class HomeScreenActivity extends AppCompatActivity
 
                         public void onClick(DialogInterface arg0, int arg1) {
                             HomeScreenActivity.super.onBackPressed();
+                            firebaseAuth.signOut();
                         }
                     }).create().show();
 
@@ -88,7 +92,7 @@ public class HomeScreenActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+
 
         //noinspection SimplifiableIfStatement
 

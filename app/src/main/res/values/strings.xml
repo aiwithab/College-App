@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CollegeApp</string>
     <string name="clg_name">Government College of Engineering and Research, Avasari</string>
-    <string name="roll_no">Roll Number</string>
+    <string name="user_email">Email</string>
     <string name="user_pass">Password</string>
     <string name="forget_pass">Forget Password?</string>
     <string name="create_acc">Create Account</string>
