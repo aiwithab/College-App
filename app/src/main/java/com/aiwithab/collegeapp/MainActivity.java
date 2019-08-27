@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     ProgressDialog dialog;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth=FirebaseAuth.getInstance();
         if(firebaseAuth.getCurrentUser() != null){
             startActivity(new Intent(MainActivity.this,HomeScreenActivity.class));
-
+            finish();
         }
 
 
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     dialog.setMessage("Signing in..please wait..");
                     dialog.show();
+
+
                     firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

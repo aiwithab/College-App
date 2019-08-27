@@ -1,7 +1,6 @@
 package com.aiwithab.collegeapp;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,16 +14,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.aiwithab.collegeapp.model.UserInformation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreateAccActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    EditText etFirstName,etRollNo,etPass,etConfirmPass,etEmail;
+    EditText etName,etRollNo,etPass,etConfirmPass,etEmail;
     TextView tvBranches,tvYear;
     Button btnSignUp;
     Spinner sBranches,sYear;
@@ -34,13 +38,15 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
 
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
+    FirebaseFirestore database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_acc);
 
-        etFirstName=findViewById(R.id.etName);
+        //init
+        etName=findViewById(R.id.etName);
         etEmail=findViewById(R.id.etEMail);
         etRollNo=findViewById(R.id.etRollNo);
         etPass=findViewById(R.id.etPass);
@@ -57,6 +63,7 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
         branches=new ArrayList<>();
         year=new ArrayList<>();
 
+        //spinner creation
         sBranches.setOnItemSelectedListener(this);
         branches.add("Automobile");
         branches.add("Civil");
@@ -81,11 +88,11 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
 
         progressDialog=new ProgressDialog(this);
 
+        //an instance of firebase authentication
         firebaseAuth=FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser()!= null){
-            finish();
-            startActivity(new Intent(CreateAccActivity.this,HomeScreenActivity.class));
-        }
+        //database instance to store user information
+        database=FirebaseFirestore.getInstance();
+
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,19 +100,46 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
                 String email = etEmail.getText().toString().trim();
                 String pass = etPass.getText().toString().trim();
 
-                if(email.isEmpty()|| pass.isEmpty()){
+                if(email.isEmpty()|| pass.isEmpty()||etName.getText().toString().trim().isEmpty()||etRollNo.getText().toString().trim().isEmpty()||etConfirmPass.getText().toString().trim().isEmpty()||sBranches.getSelectedItem()==null||sYear.getSelectedItem()==null){
                     Toast.makeText(CreateAccActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     if(pass.equals(etConfirmPass.getText().toString().trim())) {
                         progressDialog.setMessage("Registering you..please wait..");
                         progressDialog.show();
+
+
+                        //user information object
+                        UserInformation info = new UserInformation();
+                        info.setName(etName.getText().toString().trim());
+                        info.setEmail(email);
+                        info.setRollno(Long.parseLong(etRollNo.getText().toString().trim()));
+                        info.setBranches(sBranches.getSelectedItem().toString());
+                        info.setYear(sYear.getSelectedItem().toString());
+
+
+                        database.collection("user").add(info).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+
+                                Toast.makeText(CreateAccActivity.this, "Data added successfully!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(CreateAccActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+
+
+                        //signing up user with email and password
                         firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(CreateAccActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
                                     Toast.makeText(CreateAccActivity.this, "Email registered successfully!", Toast.LENGTH_SHORT).show();
-                                    CreateAccActivity.this.finish();
+                                    finish();
                                 }
                                 else{
                                     Toast.makeText(CreateAccActivity.this, "Error: "+task.getException(), Toast.LENGTH_SHORT).show();
