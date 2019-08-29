@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/SplashBackgroundColor"
     android:orientation="vertical"
-    tools:context=".splash_screen_activity">
+    tools:context=".SplashScreenActivity">
 
     <TextView
         android:id="@+id/tvSplashClgName"

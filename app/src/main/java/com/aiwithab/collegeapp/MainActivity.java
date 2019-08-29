@@ -9,13 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     TextView tvForgetPass,tvCreateAcc;
 
 
-    FirebaseAuth firebaseAuth;
 
     ProgressDialog dialog;
 
@@ -43,11 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         dialog = new ProgressDialog(this);
-        firebaseAuth=FirebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(MainActivity.this,HomeScreenActivity.class));
-            finish();
-        }
+
 
 
 
@@ -59,26 +50,17 @@ public class MainActivity extends AppCompatActivity {
                 if(email.isEmpty()||pass.isEmpty()){
                     Toast.makeText(MainActivity.this, "Please enter email and password", Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else if(email.equals("admin")||pass.equals("admin")){
                     dialog.setMessage("Signing in..please wait..");
                     dialog.show();
+                    startActivity(new Intent(MainActivity.this,HomeScreenActivity.class));
+                    finish();
 
 
-                    firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                startActivity(new Intent(MainActivity.this,HomeScreenActivity.class));
-                                Toast.makeText(MainActivity.this, "Signed in successfully", Toast.LENGTH_SHORT).show();
-                                MainActivity.this.finish();
-                            }
-                            else{
-                                Toast.makeText(MainActivity.this, "Error: "+task.getException(), Toast.LENGTH_SHORT).show();
-                                dialog.dismiss();
-                            }
-                        }
-                    });
+
+
                 }
+
 
 
             }

@@ -11,18 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.aiwithab.collegeapp.model.UserInformation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +26,7 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
     List<String> year;
 
     ProgressDialog progressDialog;
-    FirebaseAuth firebaseAuth;
-    FirebaseFirestore database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,10 +76,6 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
 
         progressDialog=new ProgressDialog(this);
 
-        //an instance of firebase authentication
-        firebaseAuth=FirebaseAuth.getInstance();
-        //database instance to store user information
-        database=FirebaseFirestore.getInstance();
 
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -108,45 +92,9 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
                         progressDialog.setMessage("Registering you..please wait..");
                         progressDialog.show();
 
-
-                        //user information object
-                        UserInformation info = new UserInformation();
-                        info.setName(etName.getText().toString().trim());
-                        info.setEmail(email);
-                        info.setRollno(Long.parseLong(etRollNo.getText().toString().trim()));
-                        info.setBranches(sBranches.getSelectedItem().toString());
-                        info.setYear(sYear.getSelectedItem().toString());
-
-
-                        database.collection("user").add(info).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-
-                                Toast.makeText(CreateAccActivity.this, "Data added successfully!", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(CreateAccActivity.this, "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-
-
-                        //signing up user with email and password
-                        firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(CreateAccActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()) {
-                                    Toast.makeText(CreateAccActivity.this, "Email registered successfully!", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
-                                else{
-                                    Toast.makeText(CreateAccActivity.this, "Error: "+task.getException(), Toast.LENGTH_SHORT).show();
-                                    progressDialog.dismiss();
-                                }
-                        }
-                        });
+                    }
+                    else{
+                        Toast.makeText(CreateAccActivity.this, "make sure your password matches", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -158,6 +106,7 @@ public class CreateAccActivity extends AppCompatActivity implements AdapterView.
 
             }
         });
+
     }
 
 

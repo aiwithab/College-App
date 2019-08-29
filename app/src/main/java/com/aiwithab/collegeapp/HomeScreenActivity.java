@@ -4,6 +4,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,7 +19,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
 
 public class HomeScreenActivity extends AppCompatActivity
@@ -25,7 +27,12 @@ public class HomeScreenActivity extends AppCompatActivity
     TabLayout tabLayout;
     ViewPager viewPager;
 
-    FirebaseAuth firebaseAuth;
+
+
+
+    TextView tvUserName,tvUserEmail;
+    ImageView ivUserPic;
+    View headerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,8 @@ public class HomeScreenActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        headerView = navigationView.getHeaderView(0);
+
 
         viewPager = findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
@@ -54,7 +63,12 @@ public class HomeScreenActivity extends AppCompatActivity
 
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle("Home");
-        firebaseAuth=FirebaseAuth.getInstance();
+
+
+        tvUserName=headerView.findViewById(R.id.tvUserName);
+        tvUserEmail=headerView.findViewById(R.id.tvUserEmail);
+        ivUserPic=headerView.findViewById(R.id.ivUserPic);
+
 
     }
 
@@ -72,7 +86,7 @@ public class HomeScreenActivity extends AppCompatActivity
 
                         public void onClick(DialogInterface arg0, int arg1) {
                             HomeScreenActivity.super.onBackPressed();
-                            firebaseAuth.signOut();
+
                         }
                     }).create().show();
 
